@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: whitesmoke;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .section {
+            border: 2px solid black;
+            padding: 20px;
+            width: 300px;
+            background-color: lemonchiffon;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: lavenderblush;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Lab 4</h1>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Alert Me</h2>
+            <form id="alertForm" onsubmit="return alertUser(event)">
+                <label for="nameInput">Enter Name:</label>
+                <input type="text" id="nameInput" required>
+                <button type="submit">Alert Me</button>
+            </form>
+        </div>
+        
+        <div class="section">
+            <h2>Change Color</h2>
+            <button onclick="changeColor()">Change Color</button>
+        </div>
+    
+        <div class="section">
+            <h2>Text Tester</h2>
+            <form id="textForm">
+                <label for="textInput">Enter Text:</label>
+                <input type="text" id="textInput" required>
+                <button type="button" onclick="validateText()">Validate Text</button>
+            </form>
+        </div>
+    
+        <div class="section">
+            <h2>Add Text</h2>
+            <button onclick="addText()">Add Text</button>
+        </div>
+    </div>
+    
+    <script>
+        function alertUser(event) {
+            event.preventDefault();
+            let name = document.getElementById("nameInput").value.trim();
+            if (name !== "") {
+                alert("Hi " + name + "!");
+            }
+        }
+
+        let isLavenderBlush = true;
+        function changeColor() {
+            document.body.style.backgroundColor = isLavenderBlush ? "lemonchiffon" : "lavenderblush";
+            isLavenderBlush = !isLavenderBlush;
+        }
+        
+        function validateText() {
+            let text = document.getElementById("textInput").value;
+            let validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            if (validation.test(text)) {
+                alert("Text contains special characters!");
+            } else {
+                alert("Text is valid.");
+            }
+        }
+
+        function addText() {
+            let heading = document.getElementById("main-heading");
+            heading.textContent += " Add Text";
+        }
+    </script>
+</body>
+</html>
